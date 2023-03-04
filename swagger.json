@@ -1,0 +1,720 @@
+{
+	"swagger": "2.0",
+	"info": {
+		"description": "This is a MyAir API Doc",
+		"version": "1.0.0",
+		"title": "MyAir",
+		"termsOfService": "http://swagger.io/terms/",
+		"contact": {
+			"email": "pujancdhorajiya2000@gnail.com"
+		},
+		"license": {
+			"name": "Apache 2.0",
+			"url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+		}
+	},
+	"host": "127.0.0.1:7000",
+	"basePath": "/myair/v1",
+	"tags": [
+		{
+			"name": "users",
+			"description": "Everything about your users",
+			"externalDocs": {
+				"description": "Find out more",
+				"url": "http://swagger.io"
+			}
+		},
+		{
+			"name": "property",
+			"description": "Everything about your users",
+			"externalDocs": {
+				"description": "Find out more",
+				"url": "http://swagger.io"
+			}
+		},
+		{
+			"name": "Record",
+			"description": "Operations about record",
+			"externalDocs": {
+				"description": "Find out more about our store",
+				"url": "http://swagger.io"
+			}
+		}
+	],
+	"schemes": [ "https", "http" ],
+	"paths": {
+		"/users": {
+			"get": {
+				"security": [
+					{
+						"Bearer": []
+					}
+				],
+				"tags": [ "users" ],
+				"summary": "Get users (With pagination)",
+				"description": "This can only be done by the logged in user.",
+				"operationId": "getUsers",
+				"produces": [ "application/json" ],
+				"parameters": [
+					{
+						"in": "query",
+						"name": "page",
+						"description": "PAGE of body",
+						"required": true,
+						"type": "string"
+					},
+					{
+						"in": "query",
+						"name": "size",
+						"description": "SIZE of body",
+						"required": true,
+						"type": "string"
+					}
+				],
+				"responses": {
+					"default": {
+						"description": "successful operation"
+					}
+				}
+			}
+		},
+		"/users/{id}": {
+			"get": {
+				"security": [
+					{
+						"Bearer": []
+					}
+				],
+				"tags": [ "users" ],
+				"summary": "Get user",
+				"description": "This can only be done by the logged in user.",
+				"operationId": "getSingleUser",
+				"produces": [ "application/json" ],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "id",
+						"description": "ID of body",
+						"required": true,
+						"type": "string"
+					}
+				],
+				"responses": {
+					"default": {
+						"description": "successful operation"
+					}
+				}
+			}
+		},
+		"/users/AddUser": {
+			"post": {
+				"security": [
+					{
+						"Bearer": []
+					}
+				],
+				"tags": [ "users" ],
+				"summary": "Create user",
+				"description": "This can only be done by the logged in user.",
+				"operationId": "createUser",
+				"produces": [ "application/json" ],
+				"parameters": [
+					{
+						"in": "body",
+						"name": "body",
+						"description": "Created user",
+						"required": true,
+						"schema": {
+							"$ref": "#/definitions/createUser"
+						}
+					}
+				],
+				"responses": {
+					"default": {
+						"description": "successful operation"
+					}
+				}
+			}
+		},
+		"/users/Delete/{id}": {
+			"delete": {
+				"security": [
+					{
+						"Bearer": []
+					}
+				],
+				"tags": [ "users" ],
+				"summary": "delete user",
+				"description": "This can only be done by the logged in user.",
+				"operationId": "deleteUser",
+				"produces": [ "application/json" ],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "id",
+						"description": "ID of body",
+						"required": true,
+						"type": "string"
+					}
+				],
+				"responses": {
+					"default": {
+						"description": "successful operation"
+					}
+				}
+			}
+		},
+		"/users/Edit/{id}": {
+			"put": {
+				"security": [
+					{
+						"Bearer": []
+					}
+				],
+				"tags": [ "users" ],
+				"summary": "Update User",
+				"description": "This can only be done by the logged in user.",
+				"operationId": "updateUser",
+				"produces": [ "application/json" ],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "id",
+						"description": "ID of body",
+						"required": true,
+						"type": "string"
+					},
+					{
+						"in": "body",
+						"name": "body",
+						"description": "Update user",
+						"required": true,
+						"schema": {
+							"$ref": "#/definitions/updateUser"
+						}
+					}
+				],
+				"responses": {
+					"default": {
+						"description": "successful operation"
+					}
+				}
+			}
+		},
+		"/users/signup": {
+			"post": {
+				"security": [
+					{
+						"Bearer": []
+					}
+				],
+				"tags": [ "users" ],
+				"summary": "SignUp user",
+				"description": "This can only be done by the logged in user.",
+				"operationId": "signupUser",
+				"produces": [ "application/json" ],
+				"parameters": [
+					{
+						"in": "body",
+						"name": "body",
+						"description": "Signup User",
+						"required": true,
+						"schema": {
+							"$ref": "#/definitions/signupUser"
+						}
+					}
+				],
+				"responses": {
+					"default": {
+						"description": "successful operation"
+					}
+				}
+			}
+		},
+		"/users/signin": {
+			"post": {
+				"tags": [ "users" ],
+				"summary": "Signin User",
+				"description": "",
+				"operationId": "siginUser",
+				"produces": [ "application/json" ],
+				"parameters": [
+					{
+						"in": "body",
+						"name": "body",
+						"description": "Signin User",
+						"required": true,
+						"schema": {
+							"$ref": "#/definitions/signin"
+						}
+					}
+				],
+				"responses": {
+					"default": {
+						"description": "successful operation"
+					}
+				}
+			}
+		},
+		"/users/forgetpassword": {
+			"post": {
+				"tags": [ "users" ],
+				"summary": "Forget User Password",
+				"description": "This can only be done by the logged in user.",
+				"operationId": "forgetPassword",
+				"produces": [ "application/json" ],
+				"parameters": [
+					{
+						"in": "body",
+						"name": "body",
+						"description": "Forget User Password",
+						"required": true,
+						"schema": {
+							"$ref": "#/definitions/forgetPW"
+						}
+					}
+				],
+				"responses": {
+					"default": {
+						"description": "successful operation"
+					}
+				}
+			}
+		},
+		"/users/resetpassword/{id}/{token}": {
+			"post": {
+				"security": [
+					{
+						"Bearer": []
+					}
+				],
+				"tags": [ "users" ],
+				"summary": "Reset User Password",
+				"description": "This can only be done by the logged in user.",
+				"operationId": "resetPassword",
+				"produces": [ "application/json" ],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "id",
+						"description": "ID of body",
+						"required": true,
+						"type": "string"
+					},
+					{
+						"in": "path",
+						"name": "token",
+						"description": "token of body",
+						"required": true,
+						"type": "string"
+					},
+					{
+						"in": "body",
+						"name": "body",
+						"description": "Reset User Password",
+						"required": true,
+						"schema": {
+							"$ref": "#/definitions/resetPW"
+						}
+					}
+				],
+				"responses": {
+					"default": {
+						"description": "successful operation"
+					}
+				}
+			}
+		},
+		"/users/changePassword": {
+			"post": {
+				"security": [
+					{
+						"Bearer": []
+					}
+				],
+				"tags": [ "users" ],
+				"summary": "Change User Password",
+				"description": "This can only be done by the logged in user.",
+				"operationId": "changePassword",
+				"produces": [ "application/json" ],
+				"parameters": [
+					{
+						"in": "body",
+						"name": "body",
+						"description": "Change User Password",
+						"required": true,
+						"schema": {
+							"$ref": "#/definitions/changePW"
+						}
+					}
+				],
+				"responses": {
+					"default": {
+						"description": "successful operation"
+					}
+				}
+			}
+		},
+		"/users/createuserWithfile": {
+			"post": {
+				"tags": [ "users" ],
+				"summary": "Create User with upload file",
+				"description": "This can only be done by the logged in user.",
+				"operationId": "userWithFile",
+				"produces": [ "application/json" ],
+				"parameters": [
+					{
+						"in": "formData",
+						"name": "file",
+						"type": "file",
+						"description": "The file to upload."
+					},
+					{
+						"in": "formData",
+						"name": "firstname",
+						"description": "Reset User Password",
+						"required": true
+					},
+					{
+						"in": "formData",
+						"name": "lastname",
+						"description": "Reset User Password",
+						"required": true
+					},
+					{
+						"in": "formData",
+						"name": "email",
+						"description": "Reset User Password",
+						"required": true
+					},
+					{
+						"in": "formData",
+						"name": "password",
+						"description": "Reset User Password",
+						"required": true
+					}
+				],
+				"responses": {
+					"default": {
+						"description": "successful operation"
+					}
+				}
+			}
+		},
+
+		"/property/measurement/mean/getall": {
+			"get": {
+				"tags": [ "property" ],
+				"summary": "Get property ",
+				"description": "This can only be done by the logged in user.",
+				"operationId": "getDeviation",
+				"produces": [ "application/json" ],
+				"responses": {
+					"default": {
+						"description": "successful operation"
+					}
+				}
+			}
+		},
+
+		"/property/measurement/mean": {
+			"get": {
+				"tags": [ "property" ],
+				"summary": "Get property ",
+				"description": "This can only be done by the logged in user.",
+				"operationId": "getDeviation",
+				"produces": [ "application/json" ],
+				"responses": {
+					"default": {
+						"description": "successful operation"
+					}
+				}
+			}
+		},
+
+		"/property/measurement/mean/new": {
+			"post": {
+				"tags": [ "property" ],
+				"summary": "Create Deviation",
+				"description": "This can only be done by the logged in user.",
+				"operationId": "createrDeviation",
+				"produces": [ "application/json" ],
+				"parameters": [
+					{
+						"in": "body",
+						"name": "body",
+						"description": "Created user Record",
+						"required": true,
+						"schema": {
+							"$ref": "#/definitions/createrDeviation"
+						}
+					}
+				],
+				"responses": {
+					"default": {
+						"description": "successful operation"
+					}
+				}
+			}
+		},
+		"/getRecord": {
+			"get": {
+				"security": [
+					{
+						"Bearer": []
+					}
+				],
+				"tags": [ "Record" ],
+				"summary": "Get record",
+				"description": "This can only be done by the logged in user.",
+				"operationId": "getRecord",
+				"produces": [ "application/json" ],
+				"responses": {
+					"default": {
+						"description": "successful operation"
+					}
+				}
+			}
+		},
+		"/updateRecord/{id}": {
+			"put": {
+				"security": [
+					{
+						"Bearer": []
+					}
+				],
+				"tags": [ "Record" ],
+				"summary": "Update record",
+				"description": "This can only be done by the logged in user.",
+				"operationId": "updateRecord",
+				"produces": [ "application/json" ],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "id",
+						"description": "ID of body",
+						"required": true,
+						"type": "string"
+					},
+					{
+						"in": "body",
+						"name": "body",
+						"description": "Created user Record",
+						"required": true,
+						"schema": {
+							"$ref": "#/definitions/updateRecord"
+						}
+					}
+				],
+				"responses": {
+					"default": {
+						"description": "successful operation"
+					}
+				}
+			}
+		}
+	},
+	"securityDefinitions": {
+		"Bearer": {
+			"type": "apiKey",
+			"name": "Authorization",
+			"in": "header"
+		},
+		"MyAir_auth": {
+			"type": "oauth2",
+			"authorizationUrl": "'http://127.0.0.1:7000/myair/v1/",
+			"flow": "implicit",
+			"scopes": {
+				"read:coach": "read your MyAir",
+				"write:coach": "modify MyAir in your account"
+			}
+		}
+	},
+	"definitions": {
+		"signin": {
+			"type": "object",
+			"properties": {
+				"email": {
+					"type": "string"
+				},
+				"password": {
+					"type": "string"
+				}
+			},
+			"xml": {
+				"name": "User"
+			}
+		},
+		"createUser": {
+			"type": "object",
+			"properties": {
+				"firstname": {
+					"type": "string"
+				},
+				"lastname": {
+					"type": "string"
+				},
+				"email": {
+					"type": "string"
+				},
+				"password": {
+					"type": "string"
+				},
+				"type": {
+					"type": "string"
+				}
+			},
+			"xml": {
+				"name": "User"
+			}
+		},
+		"createrDeviation": {
+			"type": "object",
+			"properties": {
+				"airflow": {
+					"serial": {
+						"type": "string"
+					},
+					"green": {
+						"type": "integer"
+					},
+					"yellow": {
+						"type": "integer"
+					},
+					"red": {
+						"type": "integer"
+					}
+				},
+				"temprature": {
+					"serial": {
+						"type": "string"
+					},
+					"green": {
+						"type": "integer"
+					},
+					"yellow": {
+						"type": "integer"
+					},
+					"red": {
+						"type": "integer"
+					}
+				}
+			},
+			"xml": {
+				"name": "User"
+			}
+		},
+		"updateUser": {
+			"type": "object",
+			"properties": {
+				"firstname": {
+					"type": "string"
+				},
+				"lastname": {
+					"type": "string"
+				},
+				"email": {
+					"type": "string"
+				},
+				"password": {
+					"type": "string"
+				},
+				"type": {
+					"type": "string"
+				}
+			},
+			"xml": {
+				"name": "User"
+			}
+		},
+		"signupUser": {
+			"type": "object",
+			"properties": {
+				"firstname": {
+					"type": "string"
+				},
+				"lastname": {
+					"type": "string"
+				},
+				"email": {
+					"type": "string"
+				},
+				"password": {
+					"type": "string"
+				},
+				"type": {
+					"type": "string"
+				}
+			},
+			"xml": {
+				"name": "User"
+			}
+		},
+		"forgetPW": {
+			"type": "object",
+			"properties": {
+				"email": {
+					"type": "string"
+				}
+			},
+			"xml": {
+				"name": "User"
+			}
+		},
+		"resetPW": {
+			"type": "object",
+			"properties": {
+				"password": {
+					"type": "string"
+				},
+				"confirm_password": {
+					"type": "string"
+				}
+			},
+			"xml": {
+				"name": "User"
+			}
+		},
+		"changePW": {
+			"type": "object",
+			"properties": {
+				"email": {
+					"type": "string"
+				},
+				"password": {
+					"type": "string"
+				},
+				"new_password": {
+					"type": "string"
+				}
+			},
+			"xml": {
+				"name": "User"
+			}
+		},
+		"uploadfile": {
+			"type": "object",
+			"properties": {
+				"firstname": {
+					"type": "string"
+				},
+				"lastname": {
+					"type": "string"
+				},
+				"email": {
+					"type": "string"
+				},
+				"password": {
+					"type": "string"
+				}
+			},
+			"xml": {
+				"name": "User"
+			}
+		}
+	},
+	"externalDocs": {
+		"description": "Find out more about Swagger",
+		"url": "http://swagger.io"
+	}
+}
